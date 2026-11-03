@@ -68,7 +68,7 @@ resource "aws_vpc_security_group_egress_rule" "fe-private-sgp-01-outbound-allow-
 #############################################################################################
 resource "aws_security_group" "fe-private-sgp-02" {
   name        = "fe-private-sgp-02"
-  description = "Security Group for private instance 02"
+  description = "Security Group for frontend private instance 02"
   vpc_id      = data.terraform_remote_state.vpc.outputs["vpc-id"]
 
   tags = {
