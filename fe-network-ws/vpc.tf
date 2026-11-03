@@ -1,17 +1,17 @@
 # Create VPC
-resource "aws_vpc" "hc-frontend-vpc" {
+resource "aws_vpc" "fe-vpc" {
   cidr_block           = var.vpc-cidr
   enable_dns_support   = true
   enable_dns_hostnames = true
 
   tags = {
-    Name = "hc-frontend-vpc"
+    Name = "fe-vpc"
   }
 }
 
 # Create Internet Gateway
 resource "aws_internet_gateway" "fe-igw" {
-  vpc_id = aws_vpc.hc-frontend-vpc.id
+  vpc_id = aws_vpc.fe-vpc.id
 
   tags = {
     Name = "fe-igw"
@@ -28,7 +28,7 @@ resource "aws_eip" "fe-nat-eip" {
 }
 resource "aws_nat_gateway" "fe-nat" {
   allocation_id = aws_eip.fe-nat-eip.id
-  subnet_id     = aws_subnet.public-subnet1.id
+  subnet_id     = aws_subnet.fe-public-subnet1.id
 
   tags = {
     Name = "fe-nat"
@@ -37,8 +37,8 @@ resource "aws_nat_gateway" "fe-nat" {
   depends_on = [aws_internet_gateway.fe-igw]
 }
 # public route table
-resource "aws_route_table" "public-rtb" {
-  vpc_id = aws_vpc.hc-frontend-vpc.id
+resource "aws_route_table" "fe-public-rtb" {
+  vpc_id = aws_vpc.fe-vpc.id
 
   route {
     cidr_block = "0.0.0.0/0"
@@ -46,17 +46,17 @@ resource "aws_route_table" "public-rtb" {
   }
 
   tags = {
-    Name = "public-rtb"
+    Name = "fe-public-rtb"
   }
 }
-resource "aws_route_table_association" "public-subnet1-association" {
-  subnet_id      = aws_subnet.public-subnet1.id
-  route_table_id = aws_route_table.public-rtb.id
+resource "aws_route_table_association" "fe-public-subnet1-association" {
+  subnet_id      = aws_subnet.fe-public-subnet1.id
+  route_table_id = aws_route_table.fe-public-rtb.id
 }
 
 # Create private route table 01
-resource "aws_route_table" "private-rtb01" {
-  vpc_id = aws_vpc.hc-frontend-vpc.id
+resource "aws_route_table" "fe-private-rtb-01" {
+  vpc_id = aws_vpc.fe-vpc.id
 
   route {
     cidr_block = var.vpc-cidr
@@ -68,17 +68,17 @@ resource "aws_route_table" "private-rtb01" {
   }
 
   tags = {
-    Name = "private-rtb01"
+    Name = "fe-private-rtb-01"
   }
 }
-resource "aws_route_table_association" "private-subnet1-association" {
-  subnet_id      = aws_subnet.private-subnet1.id
-  route_table_id = aws_route_table.private-rtb01.id
+resource "aws_route_table_association" "fe-private-subnet1-association" {
+  subnet_id      = aws_subnet.fe-private-subnet1.id
+  route_table_id = aws_route_table.fe-private-rtb-01.id
 }
 
 # Create private route table 02
-resource "aws_route_table" "private-rtb02" {
-  vpc_id = aws_vpc.hc-frontend-vpc.id
+resource "aws_route_table" "fe-private-rtb-02" {
+  vpc_id = aws_vpc.fe-vpc.id
 
   route {
     cidr_block = var.vpc-cidr
@@ -91,17 +91,17 @@ resource "aws_route_table" "private-rtb02" {
   #   }
 
   tags = {
-    Name = "private-rtb02"
+    Name = "fe-private-rtb-02"
   }
 }
-resource "aws_route_table_association" "private-subnet2-association" {
-  subnet_id      = aws_subnet.private-subnet2.id
-  route_table_id = aws_route_table.private-rtb02.id
+resource "aws_route_table_association" "fe-private-subnet2-association" {
+  subnet_id      = aws_subnet.fe-private-subnet2.id
+  route_table_id = aws_route_table.fe-private-rtb-02.id
 }
 
 # Create private route table 03
-resource "aws_route_table" "private-rtb03" {
-  vpc_id = aws_vpc.hc-frontend-vpc.id
+resource "aws_route_table" "fe-private-rtb-03" {
+  vpc_id = aws_vpc.fe-vpc.id
 
   route {
     cidr_block = var.vpc-cidr
@@ -114,66 +114,66 @@ resource "aws_route_table" "private-rtb03" {
   #   }
 
   tags = {
-    Name = "private-rtb03"
+    Name = "fe-private-rtb-03"
   }
 }
-resource "aws_route_table_association" "private-subnet3-association" {
-  subnet_id      = aws_subnet.private-subnet3.id
-  route_table_id = aws_route_table.private-rtb03.id
+resource "aws_route_table_association" "fe-private-subnet3-association" {
+  subnet_id      = aws_subnet.fe-private-subnet3.id
+  route_table_id = aws_route_table.fe-private-rtb-03.id
 }
 
 # Create private subnets
-resource "aws_subnet" "public-subnet1" {
-  vpc_id     = aws_vpc.hc-frontend-vpc.id
+resource "aws_subnet" "fe-public-subnet1" {
+  vpc_id     = aws_vpc.fe-vpc.id
   cidr_block = var.public-subnet1-cidr
   map_public_ip_on_launch = true
  
   tags = {
-    Name = "public-subnet1"
+    Name = "fe-public-subnet1"
   }
 }
-resource "aws_subnet" "public-subnet2" {
-  vpc_id     = aws_vpc.hc-frontend-vpc.id
+resource "aws_subnet" "fe-public-subnet2" {
+  vpc_id     = aws_vpc.fe-vpc.id
   cidr_block = var.public-subnet2-cidr
 
   tags = {
-    Name = "public-subnet2"
+    Name = "fe-public-subnet2"
   }
 }
-resource "aws_subnet" "public-subnet3" {
-  vpc_id     = aws_vpc.hc-frontend-vpc.id
+resource "aws_subnet" "fe-public-subnet3" {
+  vpc_id     = aws_vpc.fe-vpc.id
   cidr_block = var.public-subnet3-cidr
 
   tags = {
-    Name = "public-subnet3"
+    Name = "fe-public-subnet3"
   }
 }
 
 # Create private subnet
-resource "aws_subnet" "private-subnet1" {
-  vpc_id            = aws_vpc.hc-frontend-vpc.id
+resource "aws_subnet" "fe-private-subnet1" {
+  vpc_id            = aws_vpc.fe-vpc.id
   cidr_block        = var.private-subnet1-cidr
   availability_zone = var.availability-zone-a
 
   tags = {
-    Name = "private-subnet1"
+    Name = "fe-private-subnet1"
   }
 }
-resource "aws_subnet" "private-subnet2" {
-  vpc_id            = aws_vpc.hc-frontend-vpc.id
+resource "aws_subnet" "fe-private-subnet2" {
+  vpc_id            = aws_vpc.fe-vpc.id
   cidr_block        = var.private-subnet2-cidr
   availability_zone = var.availability-zone-a
 
   tags = {
-    Name = "private-subnet2"
+    Name = "fe-private-subnet2"
   }
 }
-resource "aws_subnet" "private-subnet3" {
-  vpc_id            = aws_vpc.hc-frontend-vpc.id
+resource "aws_subnet" "fe-private-subnet3" {
+  vpc_id            = aws_vpc.fe-vpc.id
   cidr_block        = var.private-subnet3-cidr
   availability_zone = var.availability-zone-a
 
   tags = {
-    Name = "private-subnet3"
+    Name = "fe-private-subnet3"
   }
 }
