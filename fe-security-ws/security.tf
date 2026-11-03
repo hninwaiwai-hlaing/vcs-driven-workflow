@@ -1,7 +1,7 @@
 resource "aws_security_group" "fe-public-sgp-01" {
   name        = "fe-public-sgp-01"
   description = "Security Group for frontend public instance 01"
-  vpc_id      = data.terraform_remote_state.vpc.outputs["vpc-id"]
+  vpc_id      = data.terraform_remote_state.fe-vpc.outputs["vpc-id"]
 
   tags = {
     Name = "fe-public-sgp-01"
@@ -34,7 +34,7 @@ resource "aws_vpc_security_group_egress_rule" "fe-public-sgp-01-outbound-allow-a
 resource "aws_security_group" "fe-private-sgp-01" {
   name        = "fe-private-sgp-01"
   description = "Security Group for frontend private instance 01"
-  vpc_id      = data.terraform_remote_state.vpc.outputs["vpc-id"]
+  vpc_id      = data.terraform_remote_state.fe-vpc.outputs["vpc-id"]
 
   tags = {
     Name = "fe-private-sgp-01"
@@ -69,7 +69,7 @@ resource "aws_vpc_security_group_egress_rule" "fe-private-sgp-01-outbound-allow-
 resource "aws_security_group" "fe-private-sgp-02" {
   name        = "fe-private-sgp-02"
   description = "Security Group for frontend private instance 02"
-  vpc_id      = data.terraform_remote_state.vpc.outputs["vpc-id"]
+  vpc_id      = data.terraform_remote_state.fe-vpc.outputs["vpc-id"]
 
   tags = {
     Name = "fe-private-sgp-02"
@@ -133,7 +133,7 @@ resource "aws_vpc_security_group_egress_rule" "fe-private-02-outbound-allow-ssh-
 resource "aws_security_group" "fe-private-sgp-03" {
   name        = "fe-private-sgp-03"
   description = "Security Group for private instance 03"
-  vpc_id      = data.terraform_remote_state.vpc.outputs["vpc-id"]
+  vpc_id      = data.terraform_remote_state.fe-vpc.outputs["vpc-id"]
 
   tags = {
     Name = "fe-private-sgp-03"
