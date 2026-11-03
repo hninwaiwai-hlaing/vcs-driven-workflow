@@ -1,6 +1,6 @@
 resource "aws_security_group" "fe-public-sgp-01" {
   name        = "fe-public-sgp-01"
-  description = "Security Group for public instance 01"
+  description = "Security Group for frontend public instance 01"
   vpc_id      = data.terraform_remote_state.vpc.outputs["vpc-id"]
 
   tags = {
