@@ -25,7 +25,3 @@ output "be-private-rtb-03-id" {
   description = "Backend private route table 03"
   value       = aws_route_table.be-private-rtb-03.id
 }
-output "be-public-sgp-01-id" {
-  description = "Backend public security group 01"
-  value       = aws_security_group.be-public-sgp-01.id
-}
