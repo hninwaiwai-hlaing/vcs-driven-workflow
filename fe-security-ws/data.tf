@@ -9,13 +9,13 @@ data "terraform_remote_state" "fe-vpc" {
   }
 }
 
-data "terraform_remote_state" "be-security" {
+data "terraform_remote_state" "fe-security" {
   backend = "remote"
 
   config = {
     organization = "vcs-wf-org"
     workspaces = {
-      name = "be-security-ws"
+      name = "fe-security-ws"
     }
   }
 }

@@ -9,7 +9,7 @@ data "terraform_remote_state" "vpc" {
   }
 }
 
-data "terraform_remote_state" "security" {
+data "terraform_remote_state" "fe-security" {
   backend = "remote"
 
   config = {

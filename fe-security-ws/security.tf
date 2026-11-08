@@ -99,9 +99,6 @@ resource "aws_vpc_security_group_ingress_rule" "fe-private-sgp-02-inbound-allow-
   from_port         = 22
   to_port           = 22
   ip_protocol       = "tcp"
-  depends_on = [ 
-    data.terraform_remote_state.be-security.be-private-sgp-02
-  ]
 }
 resource "aws_vpc_security_group_ingress_rule" "fe-private-sgp-02-inbound-allow-ssh-from-be-private-sgp-02" {
   security_group_id = aws_security_group.fe-private-sgp-02.id
@@ -110,9 +107,6 @@ resource "aws_vpc_security_group_ingress_rule" "fe-private-sgp-02-inbound-allow-
   from_port         = 22
   to_port           = 22
   ip_protocol       = "tcp"
-  depends_on = [ 
-    data.terraform_remote_state.be-security.be-private-sgp-02
-  ]
 }
 resource "aws_vpc_security_group_egress_rule" "fe-private-02-outbound-allow-icmp-to-be-private-sgp-02" {
   description       = "Allow icmp to be-private-sgp-02"
@@ -122,9 +116,6 @@ resource "aws_vpc_security_group_egress_rule" "fe-private-02-outbound-allow-icmp
   ip_protocol = "icmp"
   from_port   = 8
   to_port     = 0
-  depends_on = [ 
-    data.terraform_remote_state.be-security.be-private-sgp-02
-  ]
 }
 
 resource "aws_vpc_security_group_egress_rule" "fe-private-02-outbound-allow-ssh-to-be-private-sgp-02" {
@@ -134,9 +125,6 @@ resource "aws_vpc_security_group_egress_rule" "fe-private-02-outbound-allow-ssh-
   ip_protocol = "tcp"
   from_port   = 22
   to_port     = 22
-  depends_on = [ 
-    data.terraform_remote_state.be-security.be-private-sgp-02
-  ]
 }
 #############################################################################################
 resource "aws_security_group" "fe-private-sgp-03" {

@@ -11,6 +11,10 @@ resource "aws_vpc_peering_connection" "fe-be-vpc-peering" {
   requester {
     allow_remote_vpc_dns_resolution = true
   }
+  depends_on = [ 
+    data.terraform_remote_state.fe-network,
+    data.terraform_remote_state.be-network
+  ]
 }
 # Frontend Private Route Table 02 -> Backend VPC
 resource "aws_route" "fe-private-subnet-02-to-be-private-subnet-02" {
