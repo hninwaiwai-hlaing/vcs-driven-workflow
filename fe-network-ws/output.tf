@@ -1,11 +1,10 @@
 output "aws-region" {
   value = var.aws-region
 }
-
 output "fe-vpc-id" {
-  value = aws_vpc.fe-vpc.id
+  description = "VPC ID for frontend"
+  value       = aws_vpc.fe-vpc.id
 }
-
 output "fe-public-subnet-01" {
   value = aws_subnet.fe-public-subnet1.*
 }
@@ -17,10 +16,6 @@ output "fe-private-subnet-02" {
 }
 output "fe-private-subnet-03" {
   value = aws_subnet.fe-private-subnet3.*
-}
-output "fe-vpc-id" {
-  description = "VPC ID for frontend"
-  value       = aws_vpc.fe-vpc.id
 }
 output "fe-private-rtb-02-id" {
   description = "Frontend private route table 02"
