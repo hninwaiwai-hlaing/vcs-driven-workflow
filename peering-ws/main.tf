@@ -17,5 +17,5 @@ terraform {
 }
 
 provider "aws" {
-  region = data.terraform_remote_state.fe-network.outputs["aws-region"]
+  region = data.terraform_remote_state.fe-vpc.outputs["aws-region"]
 }
