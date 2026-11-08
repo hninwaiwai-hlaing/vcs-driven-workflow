@@ -5,7 +5,7 @@ resource "tfe_workspace_run" "fe-network" {
   apply {
     manual_confirm = false
     wait_for_run   = true
-    message        = "Initial apply: Frontend Network"
+    message        = "Initial apply: Frontend Network WS"
   }
 
   # destroy {
