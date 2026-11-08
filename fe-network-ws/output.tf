@@ -2,7 +2,7 @@ output "aws-region" {
   value = var.aws-region
 }
 
-output "vpc-id" {
+output "fe-vpc-id" {
   value = aws_vpc.fe-vpc.id
 }
 
