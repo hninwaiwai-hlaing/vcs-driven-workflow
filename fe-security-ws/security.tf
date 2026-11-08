@@ -94,7 +94,7 @@ resource "aws_vpc_security_group_ingress_rule" "fe-private-sgp-02-inbound-allow-
 
 resource "aws_vpc_security_group_ingress_rule" "fe-private-sgp-02-inbound-allow-icmp-from-be-private-sgp-02" {
   security_group_id = aws_security_group.fe-private-sgp-02.id
-  referenced_security_group_id = data.terraform_remote_state.be-security.be-private-sgp-02-id
+  referenced_security_group_id = data.terraform_remote_state.be-security.outputs["be-private-sgp-02-id"]
   description       = "Allow Ping / ICMP Echo Request (Type 8) from be-private-sgp-02"
   from_port         = 22
   to_port           = 22
@@ -102,7 +102,7 @@ resource "aws_vpc_security_group_ingress_rule" "fe-private-sgp-02-inbound-allow-
 }
 resource "aws_vpc_security_group_ingress_rule" "fe-private-sgp-02-inbound-allow-ssh-from-be-private-sgp-02" {
   security_group_id = aws_security_group.fe-private-sgp-02.id
-  referenced_security_group_id = data.terraform_remote_state.be-security.be-private-sgp-02-id
+  referenced_security_group_id = data.terraform_remote_state.be-security.outputs["be-private-sgp-02-id"]
   description       = "Allow SSH from be-private-sgp-02"
   from_port         = 22
   to_port           = 22
@@ -111,8 +111,7 @@ resource "aws_vpc_security_group_ingress_rule" "fe-private-sgp-02-inbound-allow-
 resource "aws_vpc_security_group_egress_rule" "fe-private-02-outbound-allow-icmp-to-be-private-sgp-02" {
   description       = "Allow icmp to be-private-sgp-02"
   security_group_id = aws_security_group.fe-private-sgp-02.id
-  referenced_security_group_id = data.terraform_remote_state.be-security.be-private-sgp-02-id
-  cidr_ipv4   = "0.0.0.0/24"
+  referenced_security_group_id = data.terraform_remote_state.be-security.outputs["be-private-sgp-02-id"]
   ip_protocol = "icmp"
   from_port   = 8
   to_port     = 0
@@ -120,8 +119,7 @@ resource "aws_vpc_security_group_egress_rule" "fe-private-02-outbound-allow-icmp
 
 resource "aws_vpc_security_group_egress_rule" "fe-private-02-outbound-allow-ssh-to-be-private-sgp-02" {
   security_group_id = aws_security_group.fe-private-sgp-02.id
-  referenced_security_group_id = data.terraform_remote_state.be-security.be-private-sgp-02-id
-  cidr_ipv4   = "0.0.0.0/24"
+  referenced_security_group_id = data.terraform_remote_state.be-security.outputs["be-private-sgp-02-id"]
   ip_protocol = "tcp"
   from_port   = 22
   to_port     = 22
