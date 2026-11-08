@@ -23,7 +23,7 @@ resource "tfe_workspace_run" "fe-security" {
   apply {
     manual_confirm = false
     wait_for_run   = true
-    message        = "Initial apply: Frontend Security"
+    message        = "Initial apply: Frontend Security WS"
   }
 
   # destroy {
