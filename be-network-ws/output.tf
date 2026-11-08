@@ -25,3 +25,7 @@ output "be-private-rtb-03-id" {
   description = "Backend private route table 03"
   value       = aws_route_table.be-private-rtb-03.id
 }
+output "be-vpc-cidr-block" {
+  description = "VPC ID for backend"
+  value       = aws_vpc.be-vpc.cidr_block
+}
