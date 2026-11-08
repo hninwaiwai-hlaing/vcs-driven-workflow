@@ -96,9 +96,9 @@ resource "aws_vpc_security_group_ingress_rule" "fe-private-sgp-02-inbound-allow-
   description       = "Allow Ping / ICMP Echo Request (Type 8) from be-private-sgp-02"
   security_group_id = aws_security_group.fe-private-sgp-02.id
   cidr_ipv4         = data.terraform_remote_state.be-vpc.outputs["be-vpc-cidr-block"] 
-  from_port         = 22
-  to_port           = 22
-  ip_protocol       = "tcp"
+  ip_protocol                  = "icmp"
+  from_port                    = 8
+  to_port                      = 0
 }
 resource "aws_vpc_security_group_ingress_rule" "fe-private-sgp-02-inbound-allow-ssh-from-be-private-sgp-02" {
   description       = "Allow SSH from be-private-sgp-02"
