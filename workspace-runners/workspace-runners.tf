@@ -42,7 +42,7 @@ resource "tfe_workspace_run" "fe-compute" {
   apply {
     manual_confirm = false
     wait_for_run   = true
-    message        = "Initial apply: Frontend Compute"
+    message        = "Initial apply: Frontend Compute WS"
   }
 
   # destroy {
