@@ -2,7 +2,7 @@ output "aws-region" {
   value = var.aws-region
 }
 output "fe-vpc-id" {
-  description = "VPC ID for frontend"
+  description = "VPC ID for fe-vpc"
   value       = aws_vpc.fe-vpc.id
 }
 output "fe-vpc-cidr-block" {
