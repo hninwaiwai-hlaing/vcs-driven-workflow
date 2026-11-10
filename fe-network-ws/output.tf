@@ -6,7 +6,7 @@ output "fe-vpc-id" {
   value       = aws_vpc.fe-vpc.id
 }
 output "fe-vpc-cidr-block" {
-  description = "VPC ID for frontend"
+  description = "VPC ID for fe-vpc"
   value       = aws_vpc.fe-vpc.cidr_block
 }
 output "fe-public-subnet-01" {
