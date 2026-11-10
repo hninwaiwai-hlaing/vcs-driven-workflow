@@ -4,13 +4,13 @@ resource "tfe_workspace_run" "fe-network" {
 
   apply {
     manual_confirm = false
-    wait_for_run   = true
+    wait_for_run   = false
     message        = "Initial apply: fe-network-ws"
   }
 
   # destroy {
   #   manual_confirm = false
-  #   wait_for_run   = true
+  #   wait_for_run   = false
   #   message        = "Destroy: Frontend Network"
   # }
 }
@@ -22,13 +22,13 @@ resource "tfe_workspace_run" "fe-security" {
 
   apply {
     manual_confirm = false
-    wait_for_run   = true
+    wait_for_run   = false
     message        = "Initial apply: Frontend Security WS"
   }
 
   # destroy {
   #   manual_confirm = false
-  #   wait_for_run   = true
+  #   wait_for_run   = false
   #   message        = "Destroy: Frontend Security"
   # }
 }
@@ -41,13 +41,13 @@ resource "tfe_workspace_run" "fe-compute" {
 
   apply {
     manual_confirm = false
-    wait_for_run   = true
+    wait_for_run   = false
     message        = "Initial apply: Frontend Compute WS"
   }
 
   # destroy {
   #   manual_confirm = false
-  #   wait_for_run   = true
+  #   wait_for_run   = false
   #   message        = "Destroy: Frontend Compute"
   # }
 }
@@ -60,13 +60,13 @@ resource "tfe_workspace_run" "be-network" {
 
   apply {
     manual_confirm = false
-    wait_for_run   = true
+    wait_for_run   = false
     message        = "Initial apply: Backend Network"
   }
 
   # destroy {
   #   manual_confirm = false
-  #   wait_for_run   = true
+  #   wait_for_run   = false
   #   message        = "Destroy: Backend Network"
   # }
 }
@@ -79,13 +79,13 @@ resource "tfe_workspace_run" "be-security" {
 
   apply {
     manual_confirm = false
-    wait_for_run   = true
+    wait_for_run   = false
     message        = "Initial apply: Backend Security"
   }
 
   # destroy {
   #   manual_confirm = false
-  #   wait_for_run   = true
+  #   wait_for_run   = false
   #   message        = "Destroy: Backend Security"
   # }
 }
@@ -98,13 +98,13 @@ resource "tfe_workspace_run" "be-compute" {
 
   apply {
     manual_confirm = false
-    wait_for_run   = true
+    wait_for_run   = false
     message        = "Initial apply: Backend Compute"
   }
 
   # destroy {
   #   manual_confirm = false
-  #   wait_for_run   = true
+  #   wait_for_run   = false
   #   message        = "Destroy: Backend Compute"
   # }
 }
@@ -117,13 +117,13 @@ resource "tfe_workspace_run" "vpc-peering" {
 
   apply {
     manual_confirm = false
-    wait_for_run   = true
+    wait_for_run   = false
     message        = "Initial apply: VPC Peering"
   }
 
   # destroy {
   #   manual_confirm = false
-  #   wait_for_run   = true
+  #   wait_for_run   = false
   #   message        = "Destroy: VPC Peering"
   # }
 }
