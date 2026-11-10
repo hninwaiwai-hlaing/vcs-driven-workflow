@@ -51,7 +51,7 @@ resource "aws_vpc_security_group_ingress_rule" "fe-private-sgp-03-inbound-allow-
 resource "aws_vpc_security_group_egress_rule" "fe-private-03-outbound-allow-icmp-to-be-private-sgp-03" {
   description       = "Allow icmp to be-private-sgp-03"
   security_group_id = data.terraform_remote_state.fe-security.outputs["fe-private-sgp-03"][0].id
-  referenced_security_group_id = data.terraform_remote_state.be-security.outputs["be-private-sgp-03"][0].id
+  referenced_security_group_id = aws_security_group.be-private-sgp-03.id
   ip_protocol = "icmp"
   from_port   = 8
   to_port     = 0
@@ -60,7 +60,7 @@ resource "aws_vpc_security_group_egress_rule" "fe-private-03-outbound-allow-icmp
 
 resource "aws_vpc_security_group_egress_rule" "fe-private-03-outbound-allow-ssh-to-be-private-sgp-03" {
   security_group_id = data.terraform_remote_state.fe-security.outputs["fe-private-sgp-03"][0].id
-  referenced_security_group_id = data.terraform_remote_state.be-security.outputs["be-private-sgp-03"][0].id
+  referenced_security_group_id = aws_security_group.be-private-sgp-03.id
   
   ip_protocol = "tcp"
   from_port   = 22
