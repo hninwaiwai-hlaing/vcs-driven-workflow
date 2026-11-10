@@ -18,7 +18,7 @@ output "be-vpc-id" {
   value       = aws_vpc.be-vpc.id
 }
 output "be-vpc-cidr-block" {
-  description = "VPC ID for backend"
+  description = "CIDR for backend"
   value       = aws_vpc.be-vpc.cidr_block
 }
 output "be-private-rtb-02-id" {
@@ -28,8 +28,4 @@ output "be-private-rtb-02-id" {
 output "be-private-rtb-03-id" {
   description = "Backend private route table 03"
   value       = aws_route_table.be-private-rtb-03.id
-}
-output "be-vpc-cidr-block" {
-  description = "VPC ID for be-vpc"
-  value       = aws_vpc.be-vpc.cidr_block
 }
