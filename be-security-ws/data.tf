@@ -28,3 +28,13 @@ data "terraform_remote_state" "fe-security" {
     }
   }
 }
+data "terraform_remote_state" "fe-be-vpc-peering" {
+  backend = "remote"
+
+  config = {
+    organization = "vcs-wf-org"
+    workspaces = {
+      name = "peering-ws"
+    }
+  }
+}
